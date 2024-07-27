@@ -84,6 +84,12 @@
     <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
     <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
 
+    <!-- TrueCaller auth Token -->
+    <string name="truecaller_auth_token" translatable="false">Truecaller Auth Token</string>
+    <string name="token" translatable="false">Token</string>
+    <string name="search_number" translatable="false">Search Number</string>
+
+
     <!--
         Haven't found some strings? There's more at
         https://github.com/FossifyOrg/Commons/tree/master/commons/src/main/res

@@ -29,9 +29,10 @@ import org.fossify.phone.adapters.ContactsAdapter
 import org.fossify.phone.databinding.ActivityDialpadBinding
 import org.fossify.phone.extensions.*
 import org.fossify.phone.helpers.DIALPAD_TONE_LENGTH_MS
+import org.fossify.phone.helpers.TruecallerNumberInfoHelper
 import org.fossify.phone.helpers.RecentsHelper
-import org.fossify.phone.helpers.ToneGeneratorHelper
 import org.fossify.phone.models.SpeedDial
+import org.fossify.phone.helpers.ToneGeneratorHelper
 import java.util.Locale
 import kotlin.math.roundToInt
 
@@ -155,6 +156,21 @@ class DialpadActivity : SimpleActivity() {
         }
 
         val properPrimaryColor = getProperPrimaryColor()
+        if(this.config.saveTrueCallerToken?.isNotEmpty() == true) {
+            val searchIcon = resources.getColoredDrawableWithColor(R.drawable.ic_search_vector, properPrimaryColor.getContrastColor())
+            binding.truecallerSearchButton.setImageDrawable(searchIcon)
+            binding.truecallerSearchButton.background.applyColorFilter(properPrimaryColor)
+            binding.truecallerSearchButton.beVisible() // Ensure `beVisible` is an extension function or defined properly
+
+            val truecallerNumberInfoHelper = TruecallerNumberInfoHelper()
+            binding.truecallerSearchButton.setOnClickListener {
+                truecallerNumberInfoHelper.initTruecallerNumberInfo(binding.dialpadInput.text.toString(), this)
+            }
+            R.drawable.ic_phone_one_vector
+        }else {
+            R.drawable.ic_phone_vector
+        }
+
         val callIconId = if (areMultipleSIMsAvailable()) {
             val callIcon = resources.getColoredDrawableWithColor(R.drawable.ic_phone_two_vector, properPrimaryColor.getContrastColor())
             binding.apply {

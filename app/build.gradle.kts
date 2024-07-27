@@ -97,4 +97,21 @@ dependencies {
     implementation(libs.autofit.text.view)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.eventbus)
+
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+
+    //Image modifications
+    implementation("com.github.bumptech.glide:glide:4.13.2")
+    implementation( "de.hdodenhof:circleimageview:3.1.0")
+    // Retrofit
+    implementation( "com.squareup.retrofit2:retrofit:2.9.0")
+    implementation( "com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation( "com.squareup.okhttp3:logging-interceptor:4.5.0")
+
+    //Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+
+    implementation("me.grantland:autofittextview:0.2.1")
 }

@@ -83,6 +83,7 @@ class SettingsActivity : SimpleActivity() {
         setupDialpadBeeps()
         setupShowCallConfirmation()
         setupDisableProximitySensor()
+        setupTruecallerAuthToken()
         setupDisableSwipeToAnswer()
         setupAlwaysShowFullscreen()
         setupCallsExport()
@@ -174,6 +175,12 @@ class SettingsActivity : SimpleActivity() {
             ChangeDateTimeFormatDialog(this) {}
         }
     }
+    private fun setupTruecallerAuthToken() {
+        binding.settingsTruecallerAuthTokenHolder.setOnClickListener {
+            SaveTrueCallerTokenActivity(this) {}
+        }
+    }
+
 
     private fun setupFontSize() {
         binding.settingsFontSize.text = getFontSizeText()

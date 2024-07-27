@@ -89,4 +89,12 @@ class Config(context: Context) : BaseConfig(context) {
     var alwaysShowFullscreen: Boolean
         get() = prefs.getBoolean(ALWAYS_SHOW_FULLSCREEN, false)
         set(alwaysShowFullscreen) = prefs.edit().putBoolean(ALWAYS_SHOW_FULLSCREEN, alwaysShowFullscreen).apply()
+
+    var saveTrueCallerToken: String?
+        get()= prefs.getString(TRUECALLER_TOKEN,"")
+        set(saveTrueCallerToken) = prefs.edit().putString(TRUECALLER_TOKEN,saveTrueCallerToken).apply()
+
+    var saveTrueCallerCountryCode:String?
+        get()= prefs.getString(TRUECALLER_COUNTRY_CODE,"")
+        set(saveTrueCallerCountryCode) = prefs.edit().putString(TRUECALLER_COUNTRY_CODE,saveTrueCallerCountryCode).apply()
 }

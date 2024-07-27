@@ -38,7 +38,11 @@ import org.fossify.phone.models.AudioRoute
 import org.fossify.phone.models.CallContact
 import kotlin.math.max
 import kotlin.math.min
-
+import org.fossify.phone.services.TrueCallerService
+import org.fossify.phone.truecaller.MainViewModel
+import org.fossify.phone.truecaller.MainViewModelFactory
+import androidx.lifecycle.ViewModelProvider
+import org.fossify.phone.helpers.Config
 class CallActivity : SimpleActivity() {
     companion object {
         fun getStartIntent(context: Context): Intent {
@@ -64,6 +68,9 @@ class CallActivity : SimpleActivity() {
     private var dialpadHeight = 0f
 
     private var audioRouteChooserDialog: DynamicBottomSheetChooserDialog? = null
+    private lateinit var viewModel: MainViewModel
+
+    private var networkConnectionInterceptor: NetworkConnectionInterceptor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -580,7 +587,27 @@ class CallActivity : SimpleActivity() {
                     callerNumber.text = "$number - $numberLabel"
                 }
             } else {
-                callerNumber.beGone()
+                val trueCallerService = TrueCallerService()
+                val config = Config.newInstance(applicationContext) // Instantiate Config with appropriate context
+                val authorizationToken = "Bearer "+ config.saveTrueCallerToken
+                val countryCode = config.saveTrueCallerCountryCode
+                val viewModelFactory = MainViewModelFactory(trueCallerService)
+                networkConnectionInterceptor = NetworkConnectionInterceptor(this@CallActivity)
+                viewModel = ViewModelProvider(this@CallActivity, viewModelFactory).get(MainViewModel::class.java)
+                networkConnectionInterceptor?.let { viewModel.getResponse(countryCode!!, callContact!!.number, authorizationToken, it) }
+                viewModel.trueCallerResponse.observe(this@CallActivity) { response ->
+                    if (null!=response && response.isNotEmpty()) {
+                        if (response[0].name == NO_INTERNET) {
+                            callerNumber.beGone() //No Internet
+                        } else {
+                            callerNameLabel.text = TRUECALLER + response[0].name
+                            callerNumber.text = callContact!!.number
+                        }
+                    } else {
+                        callerNumber.beGone() //No response from truecaller
+                    }
+                }
+
             }
 
             callerAvatar.apply {

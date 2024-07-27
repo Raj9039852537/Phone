@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/truecaller_info_holder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_margin">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/truecaller_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        app:civ_border_width="3dp"
+        app:civ_border_color="#ffffff"
+        android:src="@drawable/ic_person_vector"/>
+
+    <LinearLayout
+        android:id="@+id/truecaller_info_dialog_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_below="@+id/truecaller_image"
+        android:paddingStart="@dimen/activity_margin"
+        android:paddingTop="50dp"
+        android:paddingEnd="@dimen/activity_margin">
+
+        <TextView
+            android:id="@+id/truecaller_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_margin"
+            android:layout_marginEnd="@dimen/activity_margin"
+            android:paddingTop="@dimen/section_margin"
+            android:textSize="22dp"/>
+
+        <TextView
+            android:id="@+id/truecaller_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_margin"
+            android:layout_marginEnd="@dimen/activity_margin"
+            android:textSize="18dp"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/truecaller_carrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_margin"
+            android:layout_marginEnd="@dimen/activity_margin"
+            android:textSize="18dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
